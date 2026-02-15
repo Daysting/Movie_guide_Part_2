@@ -19,8 +19,11 @@ def read_movies():
     return movies
 def display_movies(movies):
     print("\nMovie List:")
-    for title, rating in movies:
-        print(f"{title} - Rating: {rating}")
+    if not movies:
+        print("No movies found.")
+        return
+    for idx, (title, rating) in enumerate(movies, start=1):
+        print(f"{idx}. {title} - Rating: {rating}")
 def add_movie(movies):
     title = input("Enter the movie title: ")
     rating = input("Enter the movie rating: ")
