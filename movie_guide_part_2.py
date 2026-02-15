@@ -36,7 +36,7 @@ def delete_movie(movies):
     return movies
 def display_menu():
     print("="*50)
-    print("\nMovie Guide Menu:")
+    print("Movie Guide Menu:")
     print("="*50)
     print("1. List all movies")
     print("2. Add a movie")
@@ -44,8 +44,10 @@ def display_menu():
     print("4. Exit")
     print("="*50)
 def main():
-    write_movies()
-    movies = read_movies()
+    try:
+        movies = read_movies()
+    except FileNotFoundError:
+        movies = []
     while True:
         display_menu()
         choice = input("Enter your choice: ")
