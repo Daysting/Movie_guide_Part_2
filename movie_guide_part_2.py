@@ -31,11 +31,21 @@ def add_movie(movies):
     with open(filename, "a") as file:
         file.write(f"{title},{rating}\n")
 def delete_movie(movies):
-    title = input("Enter the movie title to delete: ")
-    movies = [movie for movie in movies if movie[0].lower() != title.lower()]
-    with open(filename, "w") as file:
-        for title, rating in movies:
-            file.write(f"{title},{rating}\n")
+    display_movies(movies)
+    if not movies:
+        return movies
+    try:
+        choice = int(input("Enter the number of the movie to delete: "))
+        if 1 <= choice <= len(movies):
+            del movies[choice - 1]
+            with open(filename, "w") as file:
+                for title, rating in movies:
+                    file.write(f"{title},{rating}\n")
+            print("Movie deleted successfully.")
+        else:
+            print("Invalid choice. No movie deleted.")
+    except ValueError:
+        print("Invalid input. Please enter a number.")
     return movies
 def display_menu():
     print("="*50)
